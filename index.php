@@ -85,6 +85,9 @@ if (isset($_GET['delet']) && isset($_GET['file']) && $_GET['delet'] = "confirm")
             $ignored = array('.', '..', '.svn', '.htaccess');
 
             $files = array();
+            if(!is_dir($dir)){
+                mkdir($dir);
+            }
             foreach (scandir($dir) as $file) {
                 if (in_array($file, $ignored)) continue;
                 $files[$file] = filemtime($dir . '/' . $file);
